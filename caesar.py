@@ -24,9 +24,9 @@ if __name__ == '__main__':
     message = "HELLO, WORLD!"
 
     # Encryption
-    encrypted_message = caesar_cipher(key, message, "encrypt")
+    encrypted_message = caesar_cipher(message, key, "encrypt")
     print("Encrypted:", encrypted_message)
 
     # Decryption
-    decrypted_message = caesar_cipher(key, encrypted_message, "decrypt")
+    decrypted_message = caesar_cipher(encrypted_message, key, "decrypt")
     print("Decrypted:", decrypted_message)
