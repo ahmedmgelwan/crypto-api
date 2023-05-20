@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title%} AES {% endblock %}
+
+{% block content%} 
+
+    <div class="container">
+        <h1>Advanced Encryption Standard (AES)</h1>
+        <p class="lead">
+            AES is a symmetric encryption algorithm widely adopted as a standard for secure data encryption. It supports key sizes of 128, 192, and 256 bits and is used in various applications, including securing sensitive data.
+        </p>
+        
+            <form method="POST" action="/aes">
+                <div class="form-group">
+                    <label for="plaintext">Plaintext</label>
+                    <input type="text" class="form-control" placeholder="Enter plaintext" id="plaintext" name="plaintext" required>
+                </div>
+                <div class="form-group">
+                    <label for="key">Key</label>
+                    <input type="text" class="form-control" id="key" name="key" placeholder="Enter the key (must be 16, 24, or 32 bytes)" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="operation">Operation:</label>
+                    <select class="form-control" id="operation" name="operation">
+                      <option value="encrypt">Encrypt</option>
+                      <option value="decrypt">Decrypt</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary mt-3"">Perform Operation</button>
+                </form>
+                
+                <br>
+                <div class="form-group">
+                  <label for="ciphertext">Ciphertext:</label>
+                  <input type="text" class="form-control" id="ciphertext" readonly value={{ ciphertext }}>
+                  
+                </div>
+            
+                    <button id="copyButton" class="btn btn-sm btn-secondary">Copy to Clipboard</button>
+            
+                  </div>
+            
+            <script>
+                // Copy to Clipboard functionality
+                const copyButton = document.getElementById('copyButton');
+                const resultText = document.querySelector('.mt-4 p');
+              
+                copyButton.addEventListener('click', () => {
+                  const textarea = document.createElement('textarea');
+                  textarea.value = resultText.innerText;
+                  document.body.appendChild(textarea);
+                  textarea.select();
+                  document.execCommand('copy');
+                  document.body.removeChild(textarea);
+                //   alert('Copied to Clipboard');
+                });
+              </script>
+            {% endblock %}

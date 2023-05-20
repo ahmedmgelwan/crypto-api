@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title%} BlowFish {% endblock %}
+
+{% block content%}  
+<!-- blowfish.html -->
+<div class="container">
+    <h1>Blowfish</h1>
+    <p class="lead">
+        Blowfish is a symmetric key block cipher designed to replace the aging Data Encryption Standard (DES). It uses variable-length key sizes and a Feistel network structure, making it suitable for a wide range of applications.
+    </p>
+    <form>
+        <div class="mb-3">
+            <label for="blowfish-input" class="form-label">Enter the message:</label>
+            <input type="text" class="form-control" id="blowfish-input">
+        </div>
+        <button type="submit" class="btn btn-primary">Encrypt/Decrypt</button>
+    </form>
+    <div class="mt-4">
+        <strong>Output:</strong>
+        <p id="blowfish-output"></p>
+    </div>
+</div>
+
+{% endblock %}

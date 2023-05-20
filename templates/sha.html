@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title%} SHA {% endblock %}
+
+{% block content%}  
+<!-- sha.html -->
+<div class="container">
+    <h1>Secure Hash Algorithm (SHA)</h1>
+    <p class="lead">
+        SHA is a family of cryptographic hash functions that generate a fixed-size hash value from input data. It is commonly used for data integrity checks, password storage, digital signatures, and other cryptographic applications.
+    </p>
+    <form action="/sha" method="post">
+        <div class="form-group">
+          <label for="sha-input">Input:</label>
+          <input type="text" class="form-control" id="sha-input" name="plaintext" required>
+        </div>
+        <div class="form-group">
+          <label for="sha-type">Hash Type:</label>
+          <select class="form-control" id="sha-type" name="sha-type">
+            <option value="sha256">SHA-256</option>
+            <option value="sha512">SHA-512</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary m-2">Hash</button>
+        </div>
+        <div class="form-group">
+          <label for="sha-output">Hash Value:</label>
+          <input type="text" class="form-control" id="sha-output" name="sha-output" readonly value="{{ hashed }}">
+          <button id="copyButton" type="button" class="btn btn-secondary mt-3" onclick="copyToClipboard()">Copy to Clipboard</button>
+        </div>
+      </form>
+</div>
+
+<script>
+  // Copy to Clipboard functionality
+  const copyButton = document.getElementById('copyButton');
+  const shaOutput = document.getElementById('sha-output');
+  
+  copyButton.addEventListener('click', () => {
+    shaOutput.select();
+    document.execCommand('copy');
+    alert('Copied to Clipboard');
+  });
+</script>
+
+
+{% endblock %}
