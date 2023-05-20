@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title%} Playfair {% endblock %}
+
+{% block content%} 
+
+<div class="container">
+  <h1>Playfair Cipher</h1>
+  <p class="lead">
+    The Playfair cipher is a manual symmetric encryption technique that uses a 5x5 square grid of letters and a set of rules to encrypt and decrypt messages. It is based on the use of digraphs (pairs of letters).
+  </p>
+  
+  <form method="post">
+    <div class="form-group">
+      <label for="plaintext">Plaintext:</label>
+      <input type="text" class="form-control" id="plaintext" placeholder="Enter plaintext" name="plaintext" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="key">Key:</label>
+      <input type="text" class="form-control" id="key" placeholder="Enter key" name="key">
+    </div>
+    
+    <div class="form-group">
+      <label for="operation">Operation:</label>
+      <select class="form-control" id="operation" name="operation">
+        <option value="encrypt">Encrypt</option>
+        <option value="decrypt">Decrypt</option>
+      </select>
+    </div>
+    
+    <button type="submit" class="btn btn-primary mt-3">Perform Operation</button>
+  </form>
+  
+  <br>
+  
+  <div class="form-group">
+    <label for="ciphertext">Ciphertext:</label>
+    <input type="text" class="form-control" id="ciphertext" readonly value="{{ ciphertext }}">
+  </div>
+  
+  <button id="copyButton" type="button" class="btn btn-secondary mt-3">Copy to Clipboard</button>
+</div>
+
+<script>
+  // Copy to Clipboard functionality
+  const copyButton = document.getElementById('copyButton');
+  const ciphertext = document.getElementById('ciphertext');
+  
+  copyButton.addEventListener('click', () => {
+    ciphertext.select();
+    document.execCommand('copy');
+    alert('Copied to Clipboard');
+  });
+</script>
+
+{% endblock %}
